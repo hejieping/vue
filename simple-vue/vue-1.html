@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <script src="./resource/vue.js"></script>
+</head>
+
+<body>
+    <div id="example-1">
+        <span>Message: {{ msg }}</span>
+        <span v-once>这个将不会改变: {{ msg }}</span>
+        <br>
+        <button v-on:click="doThis">change msg</button>
+        <br>
+        <div v-html="html"></div>
+        <br>
+        <h1 v-show="ok">Hello!</h1>
+        <br>
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
+        <template v-if="ok">
+                    <h1>Title</h1>
+                    <p>Paragraph 1</p>
+                    <p>Paragraph 2</p>
+        </template>
+        <div v-for="item in items">
+            {{ item }}
+        </div>
+        <br>
+        <p v-bind:title="title">html属性不能使用双大括号形式绑定，只能使用v-bind指令</p>
+        <input v-model="msg" placeholder="edit me">
+        <p>Message is: {{ msg }}</p>
+    </div>
+</body>
+<script>
+    var message = 'asd';
+    var vue = new Vue({
+        el: '#example-1',
+        data: {
+            msg: message,
+            html: '<p>inner html</p>',
+            ok: true,
+            items:[1,2,3,4,5],
+            title:'asd'
+        },
+        methods: {
+            doThis: function() {
+                this.msg = 'changed';
+            }
+        }
+    });
+    message = 'e';
+</script>
+
+</html>

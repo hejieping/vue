@@ -8,16 +8,38 @@
   <a v-on:click.stop="doThis">1</a>
   <input v-model="message" placeholder="edit me">
   <p>Message is: {{ message }}</p>
+  <div id="demo">
+  <button v-on:click="show = !show">
+    Toggle
+  </button>
+  <transition name="fade">
+    <p v-if="show">hello</p>
+  </transition>
+  <div id="example-3">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated tada"
+    leave-active-class="animated bounceOutRight"
+  >
+    <p v-if="show">hello123</p>
+  </transition>
+</div>
+</div>
 </div>
 </template>
 
 <script>
+import animation from 'animate.css'
 export default {
   name: 'example-1',
   data () {
     return {
       counter: 0,
-      message:'init'
+      message:'init',
+      show:true
     }
   },
     // 在 `methods` 对象中定义方法
@@ -42,6 +64,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
 h1, h2 {
   font-weight: normal;
 }
