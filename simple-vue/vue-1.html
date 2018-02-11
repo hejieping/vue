@@ -22,6 +22,8 @@
                     <p>Paragraph 1</p>
                     <p>Paragraph 2</p>
         </template>
+        <br>
+        <button v-on:click="changeData">change item-1</button>
         <div v-for="item in items">
             {{ item }}
         </div>
@@ -29,6 +31,8 @@
         <p v-bind:title="title">html属性不能使用双大括号形式绑定，只能使用v-bind指令</p>
         <input v-model="msg" placeholder="edit me">
         <p>Message is: {{ msg }}</p>
+        <div id="mount-test">
+        </div>
     </div>
 </body>
 <script>
@@ -45,10 +49,25 @@
         methods: {
             doThis: function() {
                 this.msg = 'changed';
-            }
+            },
+            changeData () {
+                  Vue.set(this.items,0,99);
+              }
         }
     });
     message = 'e';
+// 创建构造器
+var Profile = Vue.extend({
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+    data: function () {
+        return {
+        firstName: 'Walter',
+        lastName: 'White',
+        alias: 'Heisenberg'
+        }
+    }
+    });
+    new Profile().$mount('#mount-test');
 </script>
 
 </html>
