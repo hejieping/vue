@@ -1,0 +1,62 @@
+<script src="./resource/vue.js"></script>
+<script src="./resource/vuex.js"></script>
+<button id="app">
+    <script>
+        const moduleA = {
+            state:{
+                count:0
+            },
+            getters: {
+                getCountA:state => {return state.count+1}
+            }
+        }
+        const store = new Vuex.Store({
+            state:{
+                count:0
+            },
+            mutations: {
+                increment(state,n){
+                    state.count+=n;
+                }
+            },
+            getters: {
+                getCount:state => {return state.count+1}
+            },
+            actions: {
+                increment(context){
+                    context.commit('increment',7);
+                }
+            },
+            modules: {
+                moduleA
+            }
+        });
+    // 创建一个 Counter 组件
+const Counter = {
+  template: `<div><div>{{ count }}</div><button v-on:click="incre">increment</button></div>`,
+  computed: {
+    count () {
+      return this.$store.getters.getCount;
+    }
+  },
+  methods: {
+      incre:function(){
+          store.commit('increment',6);
+          store.dispatch('increment');
+          console.log(store.state.moduleA.count);
+      }
+  }
+}
+const app = new Vue({
+  el: '#app',
+  // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
+  store,
+  components: { Counter },
+  template: `
+    <div class="app">
+      <counter></counter>
+    </div>
+  `
+})
+    </script>
+</button>
