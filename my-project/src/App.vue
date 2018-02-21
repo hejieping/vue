@@ -2,6 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
+    <div v-html="rawhtml"></div>
   </div>
 </template>
 
@@ -37,8 +38,65 @@ map.set("second","two");
 for(let [key,value] of map){
  console.log(key + " is " + value);
 }
+//字符串操作
+let s = "hello world";
+console.log(s.startsWith('hello'));
+console.log(s.endsWith('world'));
+console.log(s.includes('wor'));
+console.log(s.repeat(2));
+//模板字符串
+var rawhtml = `
+<ul>
+  <li>first</li>
+  <li>second</li>
+</ul>
+`;
+//Number 处理
+console.log(Number.isFinite(1.5));
+console.log(Number.isFinite(NaN));
+console.log(Number.isNaN(NaN));
+console.log(Number.parseInt(12.45));
+console.log(Number.parseFloat('12.45sdf'));
+console.log(Number.isInteger(12.45));
+console.log(Number.EPSILON);
+console.log(Number.isSafeInteger(9007199254740992));
+//Math 处理
+console.log(Math.trunc(12.45));
+console.log(Math.trunc(true));
+console.log(Math.trunc('asd'));
+console.log(Math.sign(5));
+console.log(Math.sign(0));
+console.log(Math.sign(-0));
+console.log(Math.sign(-5));
+console.log(Math.sign(NaN));
+console.log(Math.cbrt(8));
+console.log(Math.cbrt('8'));
+console.log(Math.cbrt('asd8'));
+console.log(2**8);
+//函数默认值
+function example3(x,y = 'sad'){
+  console.log(x,y);
+}
+example3('arw');
+example3('arw','');
+//rest 参数
+function example4(...values){
+  var string = '';
+  for(let val of values){
+    string +=val;
+  }
+  console.log(string);
+}
+example4(4,3,1,'asd00');
+//函数名称
+console.log(example3.name);
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return {
+      rawhtml
+    }
+  }
 }
 </script>
 
