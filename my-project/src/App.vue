@@ -90,6 +90,37 @@ function example4(...values){
 example4(4,3,1,'asd00');
 //函数名称
 console.log(example3.name);
+//扩展操作
+console.log(...[1, 2, 3])
+function example5(x,y,z){
+  console.log(x,y,z);
+}
+let args = [3,2,1];
+let args2 = [...args];
+args2[0] = 5;
+example5(...args);
+const [first, ...rest] = [1, 2, 3, 4, 5];
+console.log(rest)
+console.log(...'asdaga');
+//数组操作
+let cloud = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length:3
+};
+console.log(...Array.from(cloud));
+console.log(Array.of(1,3,8));
+console.log([1,2,3,4,5,-1].find((n) => n<0));
+console.log([1,2,3,4,5,-1].findIndex((n) => n<0));
+console.log([1,2,3,4,5,-1].fill(7));
+for(let ele of ['a', 'b'].keys()){
+  console.log(ele);
+}
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+console.log(0 in [undefined, undefined, undefined]);
 export default {
   name: 'App',
   data(){
