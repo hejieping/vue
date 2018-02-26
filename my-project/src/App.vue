@@ -121,6 +121,59 @@ for (let [index, elem] of ['a', 'b'].entries()) {
   console.log(index, elem);
 }
 console.log(0 in [undefined, undefined, undefined]);
+//对象操作
+let Person = {
+  name:'kepping',
+  hello(){
+    console.log('hello');
+  }
+}
+Person.hello();
+console.log(Object.is('foo','foo'));
+console.log(Object.is(0,-0));
+let course = {
+  courseName:'asd'
+}
+Object.assign(Person,course);
+console.log(Person);
+console.log(Object.getOwnPropertyDescriptors(Person,'name'));
+for(let name in Person){
+  console.log(name);
+}
+console.log(Object.setPrototypeOf(course,{x:1}));
+console.log(course.x);
+const protoTest = {
+  find(){
+    return super.courseName;
+  }
+}
+Object.setPrototypeOf(course,protoTest);
+console.log(course.__proto__ );
+const proto = {
+  foo: 'hello'
+};
+
+const obj = {
+  find() {
+    return super.foo;
+  }
+};
+
+Object.setPrototypeOf(obj, proto);
+console.log(obj.find())// "hello"
+
+var parent = {
+  name : "parent"
+};
+var child = {
+  name : "child",
+  __proto__ : parent
+};
+var subChild = {
+  name : "subChild",
+  __proto__ : child
+}
+console.log(subChild);
 export default {
   name: 'App',
   data(){
