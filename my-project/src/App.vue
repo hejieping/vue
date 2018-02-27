@@ -174,6 +174,35 @@ var subChild = {
   __proto__ : child
 }
 console.log(subChild);
+//symbol
+let sym1 = Symbol('foo');
+let sym2 = Symbol(parent);
+let sym3 = Symbol();
+let sym4 = Symbol();
+console.log(sym1);
+console.log(sym2);
+let symObj = {
+  [sym3]:'lalala',
+  [sym4]:'lalal4',
+  sym4:'LALAL4'
+};
+console.log(symObj);
+console.log(symObj[sym4]);
+console.log(Object.getOwnPropertySymbols(symObj));
+let sym5 = Symbol.for('foo');
+let sym6 = Symbol.for('foo');
+console.log(sym5==sym6);
+class MyArray extends Array {
+  static get [Symbol.species]() { return Array; }
+}
+
+{
+  const a = new MyArray();
+const b = a.map(x => x);
+
+console.log(b instanceof MyArray) // false
+console.log(b instanceof Array) // true
+}
 export default {
   name: 'App',
   data(){
