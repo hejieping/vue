@@ -199,10 +199,30 @@ class MyArray extends Array {
 {
   const a = new MyArray();
 const b = a.map(x => x);
-
 console.log(b instanceof MyArray) // false
 console.log(b instanceof Array) // true
 }
+//set map结构
+const set1 = new Set();
+[1,3,4,5,123,51,1].forEach((a)=>set1.add(a));
+set1.forEach((value,key)=>console.log(value+':'+key));
+console.log(set1);
+const map0 = new Map()
+  .set(1, 'a')
+  .set(2, 'b')
+  .set(3, 'c');
+
+const map1 = new Map(
+  [...map0].filter(([k, v]) => k < 3)
+);
+// 产生 Map 结构 {1 => 'a', 2 => 'b'}
+console.log(map1);
+const map2 = new Map(
+  [...map1].map(([k, v]) => [k * 2, '_' + v])
+    );
+console.log(map1);
+console.log([...map1]);
+// 产生 Map 结构 {2 => '_a', 4 => '_b', 6 => '_c'}
 export default {
   name: 'App',
   data(){
