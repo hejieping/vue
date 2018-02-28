@@ -223,6 +223,22 @@ const map2 = new Map(
 console.log(map1);
 console.log([...map1]);
 // 产生 Map 结构 {2 => '_a', 4 => '_b', 6 => '_c'}
+//proxy 
+var proxy = new Proxy({},{
+  get:function(target,property){
+    console.log(JSON.stringify(target),property);
+    return 35;
+  }
+})
+console.log(proxy.time);
+var twice = function(){
+  apply(target,ctx,args){
+    console.log(JSON.stringify(target),JSON.stringify(ctx),JSON.stringify(args))
+  }
+}
+var proxyObj = {proxy:new Proxy()};
+console.log(proxyObj.eag);
+
 export default {
   name: 'App',
   data(){
