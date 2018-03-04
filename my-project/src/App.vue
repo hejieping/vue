@@ -231,14 +231,41 @@ var proxy = new Proxy({},{
   }
 })
 console.log(proxy.time);
-var twice = function(){
-  apply(target,ctx,args){
-    console.log(JSON.stringify(target),JSON.stringify(ctx),JSON.stringify(args))
+var twice = {
+  apply (target, ctx, args) {
+    return Reflect.apply(...arguments) * 2;
   }
-}
-var proxyObj = {proxy:new Proxy()};
-console.log(proxyObj.eag);
+};
 
+
+//reflect
+let reflectObj = {
+  reflectName:'dabaicai'
+}
+console.log(Reflect.has(reflectObj,'reflectName'));
+Reflect.defineProperty(reflectObj,'defineValue',{
+  value:'defineValuealdkaw'
+})
+console.log(reflectObj);
+console.log(Reflect.get(reflectObj,'reflectName'));
+Reflect.set(reflectObj,'setValue','setValue')
+console.log(reflectObj);
+console.log(Reflect.deleteProperty(reflectObj,'reflectName'));
+console.log(reflectObj);
+function reflectClass(name){
+  this.name = name;
+}
+console.log(Reflect.construct(reflectClass,['reflectClassName']));
+console.log(Reflect.getPrototypeOf(reflectObj));
+Reflect.setPrototypeOf(reflectClass,Reflect.getPrototypeOf(reflectObj))
+console.log(Reflect.getPrototypeOf(reflectClass))
+const ages = [11, 33, 12, 54, 18, 96];
+console.log(Reflect.apply(Math.min,Math,ages));
+console.log(Reflect.getOwnPropertyDescriptor(reflectObj,'defineValue'));
+console.log(Reflect.isExtensible(reflectObj));
+console.log(Reflect.preventExtensions(reflectObj));
+console.log(Reflect.isExtensible(reflectObj));
+console.log(Reflect.ownKeys(reflectObj));
 export default {
   name: 'App',
   data(){
