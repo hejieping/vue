@@ -266,6 +266,50 @@ console.log(Reflect.isExtensible(reflectObj));
 console.log(Reflect.preventExtensions(reflectObj));
 console.log(Reflect.isExtensible(reflectObj));
 console.log(Reflect.ownKeys(reflectObj));
+//promise
+let promiseObj = new Promise(function(resolve,reject){
+  console.log('promise');
+  resolve('asd');
+  
+});
+promiseObj.then((result)=>console.log(JSON.stringify(result))).catch((error=>console.log(error+'error')));
+console.log('hi');
+const promises = [2, 3, 5, 7, 11, 13].map((id)=> new Promise((resolve,reject)=>resolve(id)));
+Promise.all(promises).then((results)=>console.log(results));
+//iterator
+class RangeIterator{
+  constructor(start,end){
+    this.value = start;
+    this.stop = end;
+  }
+  [Symbol.iterator](){
+    return this;
+  }
+  next(){
+    var value = this.value;
+    if(value < this.stop){
+      this.value++;
+      return {done:false,value:value};
+    }
+    return {done:true,value:undefined};
+  }
+}
+function range(start,end){
+  return new RangeIterator(start,end);
+}
+for(let value of range(0,3)){
+  console.log(value);
+}
+let myIterator = {
+  [Symbol.iterator]:function*(){
+    yield 1;
+    yield 3;
+    yield 5;
+  }
+}
+for (let x of myIterator) {
+  console.log(x);
+}
 export default {
   name: 'App',
   data(){
