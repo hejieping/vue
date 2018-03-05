@@ -7,6 +7,7 @@
 </template>
 
 <script>
+var co = require('co');
 //值交换
 let x = 1;
 let y = 2;
@@ -333,6 +334,11 @@ function * outer(){
 for(let v of outer()){
   console.log(v);
 }
+co(function *(){
+  let values = [1,6,5];
+  yield values.map((value)=>console.log(value));
+  console.log('finish');
+})
 export default {
   name: 'App',
   data(){
