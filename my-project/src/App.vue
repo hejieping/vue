@@ -310,6 +310,29 @@ let myIterator = {
 for (let x of myIterator) {
   console.log(x);
 }
+//generator
+function* dataConsumer() {
+  console.log(`1. ${yield}`);
+  console.log(`2. ${yield}`);
+  return 'result';
+}
+
+let genObj = dataConsumer();
+// Started
+genObj.next('a')
+// 1. a
+genObj.next('b')
+function * inner(){
+  yield 'hello';
+}
+function * outer(){
+  yield 1;
+  yield * inner();
+  yield 2;
+}
+for(let v of outer()){
+  console.log(v);
+}
 export default {
   name: 'App',
   data(){
