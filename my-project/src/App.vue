@@ -339,6 +339,15 @@ co(function *(){
   yield values.map((value)=>console.log(value));
   console.log('finish');
 })
+//async
+function timeout(ms){
+  return new Promise((resolve)=>setTimeout(resolve,ms));
+}
+async function asyncPrint(value,ms){
+  await timeout(ms);
+  console.log(value);
+}
+asyncPrint('5second',5000);
 export default {
   name: 'App',
   data(){
