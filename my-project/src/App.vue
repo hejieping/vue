@@ -348,6 +348,22 @@ async function asyncPrint(value,ms){
   console.log(value);
 }
 asyncPrint('5second',5000);
+
+//class
+class Point {
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+  }
+}
+class ColorPoint extends Point{
+  constructor(x,y,color){
+    super(x,y);
+    this.color = color;
+  }
+}
+var colorPoint = new ColorPoint(1,2,'red');
+console.log(colorPoint);
 export default {
   name: 'App',
   data(){
