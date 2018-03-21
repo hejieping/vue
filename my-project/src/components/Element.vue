@@ -224,7 +224,6 @@
   <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
 </el-menu>
 </div>
-<div></div>
 <div class="block">
       <el-tabs v-model="activeName" @tab-click="handleClick">
     <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
